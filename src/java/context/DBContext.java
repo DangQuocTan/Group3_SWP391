@@ -8,26 +8,37 @@ package context;
  *
  * @author dangq
  */
+import static java.lang.Character.UnicodeBlock.forName;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-
 public class DBContext {
-    
-    /*USE BELOW METHOD FOR YOUR DATABASE CONNECTION FOR BOTH SINGLE AND MULTILPE SQL SERVER INSTANCE(s)*/
-    /*DO NOT EDIT THE BELOW METHOD, YOU MUST USE ONLY THIS ONE FOR YOUR DATABASE CONNECTION*/
-     public Connection getConnection()throws Exception {
-        String url = "jdbc:sqlserver://"+serverName+":"+portNumber +";databaseName="+dbName;
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        return DriverManager.getConnection(url, userID, password);
+
+//    Connection con = null;
+
+     public static Connection makeConnection() throws Exception {
+        Connection cn = null;
+        String IP = "localhost";
+        String instanceName = "DESKTOP-00K4NLC\\TANBEO";
+        String port = "1433";
+        String uid = "sa";
+        String pwd = "123";
+        String db = "SWP391_Project_Test";
+        String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+        String url = "jdbc:sqlserver://" + IP + "\\" + instanceName + ":" + port
+                + ";databasename=" + db + ";user=" + uid + ";password=" + pwd;
+        Class.forName(driver);
+        cn = DriverManager.getConnection(url);
+        return cn;
     }
-    
-    /*Insert your other code right after this comment*/
-   
-    /*Change/update information of your database connection, DO NOT change name of instance variables in this class*/
-    private final String serverName = "DESKTOP-00K4NLC\\TANBEO";
-    private final String dbName = "SWP391_Project_Test";
-    private final String portNumber = "1433";
-    private final String userID = "sa";
-    private final String password = "123";
+
+    public static void main(String[] args) throws Exception {
+        Connection con = DBContext.makeConnection();
+        if (con != null) {
+            System.out.println("ok");
+        } else {
+            System.out.println("fail");
+        }
+    }
+
 }
