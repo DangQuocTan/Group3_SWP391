@@ -99,4 +99,35 @@ public class AccountDAO {
         return null;
     }
   
+    public Account getAccountById(int userId) {
+        try {
+            con = DBContext.makeConnection();
+            if (con != null) {
+                String sql = "select userId, username, password, email, phone, fullname, address, gender, avatar, roleId, created_date, modify_date\n"
+                        + "from Account\n"
+                        + "where userId = ?";
+                ps = con.prepareStatement(sql);
+                ps.setInt(1, userId);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    return Account.builder()
+                            .userid(rs.getInt(1))
+                            .username(rs.getString(2))
+                            .build();
+
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
 }

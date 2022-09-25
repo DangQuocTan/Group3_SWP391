@@ -4,9 +4,33 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>controller.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>logoutController</servlet-name>
+        <servlet-class>controller.logoutController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>MyRegistrationServlet</servlet-name>
+        <servlet-class>controller.MyRegistrationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Signup</servlet-name>
+        <servlet-class>controller.Signup</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>logoutController</servlet-name>
+        <url-pattern>/logoutController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>MyRegistrationServlet</servlet-name>
+        <url-pattern>/MyRegistrationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Signup</servlet-name>
+        <url-pattern>/Signup</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
