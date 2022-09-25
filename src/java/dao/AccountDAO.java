@@ -98,45 +98,23 @@ public class AccountDAO {
         }
         return null;
     }
-    public boolean updatePasswordTokenWithEmail(String email, String token) {
-        String sql = "update Account\n"
-                + "set password_token = ?\n"
-                + "where email = ?";
+  
+    public Account getAccountById(int userId) {
         try {
             con = DBContext.makeConnection();
             if (con != null) {
+                String sql = "select userId, username, password, email, phone, fullname, address, gender, avatar, roleId, created_date, modify_date\n"
+                        + "from Account\n"
+                        + "where userId = ?";
                 ps = con.prepareStatement(sql);
-                ps.setString(1, token);
-                ps.setString(2, email);
-                if (ps.executeUpdate() > 0) {
-                    return true;
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (con != null) {
-                    con.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return false;
-
-    }
-     public boolean isExistAccount(String email) {
-        String sql = "SELECT * FROM [Account] WHERE Email = ?";
-        try {
-            con = DBContext.makeConnection();
-            if (con != null) {
-                ps = con.prepareStatement(sql);
-                ps.setString(1, email);
-
+                ps.setInt(1, userId);
                 rs = ps.executeQuery();
                 if (rs.next()) {
-                    return true;
+                    return Account.builder()
+                            .userid(rs.getInt(1))
+                            .username(rs.getString(2))
+                            .build();
+
                 }
             }
         } catch (Exception e) {
@@ -150,7 +128,6 @@ public class AccountDAO {
                 e.printStackTrace();
             }
         }
-        return false;
+        return null;
     }
-  
 }
