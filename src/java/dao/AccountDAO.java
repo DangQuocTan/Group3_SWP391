@@ -67,6 +67,60 @@ public class AccountDAO {
         }
         return null;
     }
+    public boolean isExistAccount(String email) {
+        String sql = "SELECT * FROM [Account] WHERE Email = ?";
+        try {
+            con = DBContext.makeConnection();
+            if (con != null) {
+                ps = con.prepareStatement(sql);
+                ps.setString(1, email);
+
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+    }
+    public boolean updatePasswordTokenWithEmail(String email, String token) {
+        String sql = "update Account\n"
+                + "set password_token = ?\n"
+                + "where email = ?";
+        try {
+            con = DBContext.makeConnection();
+            if (con != null) {
+                ps = con.prepareStatement(sql);
+                ps.setString(1, token);
+                ps.setString(2, email);
+                if (ps.executeUpdate() > 0) {
+                    return true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return false;
+
+    }
     
 
     public Account CheckAccountExit(String user) {
@@ -130,4 +184,5 @@ public class AccountDAO {
         }
         return null;
     }
+    
 }
