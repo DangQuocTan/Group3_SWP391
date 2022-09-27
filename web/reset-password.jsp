@@ -1,8 +1,3 @@
-<%-- 
-    Document   : Login
-    Created on : May 26, 2022, 9:02:11 PM
-    Author     : thuong
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
