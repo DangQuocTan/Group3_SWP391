@@ -11,14 +11,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-<<<<<<< HEAD
 /**
  *
  * @author yentt
  */
-=======
-
->>>>>>> 3ef12d2cc7650d61392a01ad69c1f3d18e7af169
 @Builder
 @Getter
 @Setter
