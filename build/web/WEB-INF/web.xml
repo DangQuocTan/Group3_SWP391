@@ -21,8 +21,13 @@
         <servlet-class>controller.ResetPassworldController</servlet-class>
     </servlet>
     <servlet>
+<<<<<<< HEAD
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>controller.HomeController</servlet-class>
+=======
         <servlet-name>ChangePassword</servlet-name>
         <servlet-class>controller.ChangePasswordController</servlet-class>
+>>>>>>> 8f1af2b06c334c56e021bc01177d92744e8d65a1
     </servlet>
     <servlet>
         <servlet-name>HomeController</servlet-name>
@@ -53,8 +58,13 @@
         <url-pattern>/Reset</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+<<<<<<< HEAD
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/home</url-pattern>
+=======
         <servlet-name>ChangePassword</servlet-name>
         <url-pattern>/ChangePass</url-pattern>
+>>>>>>> 8f1af2b06c334c56e021bc01177d92744e8d65a1
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
