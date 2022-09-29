@@ -121,7 +121,29 @@ public class AccountDAO {
         return false;
 
     }
-    
+    public void changePassword(int userID, String newPassword) {
+        String sql = "UPDATE Account SET password = ? WHERE userId = ?";
+        PreparedStatement stm = null;
+        try {
+            con = DBContext.makeConnection();
+            if (con != null) {
+                stm = con.prepareStatement(sql);
+                stm.setInt(2, userID);
+                stm.setString(1, newPassword);
+                stm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     public Account CheckAccountExit(String user) {
         String query = "  select * from Account  "
