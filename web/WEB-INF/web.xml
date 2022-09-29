@@ -20,6 +20,10 @@
         <servlet-name>ResetPassword</servlet-name>
         <servlet-class>controller.ResetPassworldController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>controller.HomeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>ResetPassword</servlet-name>
         <url-pattern>/Reset</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
