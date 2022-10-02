@@ -3,13 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/GitHub/Group3_SWP391/web/js/scripts_home.js</file>
-            <file>file:/D:/GitHub/Group3_SWP391/src/java/controller/ProfileController.java</file>
-            <file>file:/D:/GitHub/Group3_SWP391/web/profile.jsp</file>
-            <file>file:/D:/GitHub/Group3_SWP391/web/SubjectList.jsp</file>
-            <file>file:/D:/GitHub/Group3_SWP391/web/Home.jsp</file>
-            <file>file:/D:/GitHub/Group3_SWP391/web/WEB-INF/web.xml</file>
-            <file>file:/D:/GitHub/Group3_SWP391/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/hacon/OneDrive/Documents/GitHub/Group3_SWP391/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/hacon/OneDrive/Documents/GitHub/Group3_SWP391/src/java/model/Post.java</file>
+            <file>file:/C:/Users/hacon/OneDrive/Documents/GitHub/Group3_SWP391/web/BlogList.jsp</file>
+            <file>file:/C:/Users/hacon/OneDrive/Documents/GitHub/Group3_SWP391/src/java/dao/PostDAO.java</file>
+            <file>file:/C:/Users/hacon/OneDrive/Documents/GitHub/Group3_SWP391/web/BlogDetail.jsp</file>
+            <file>file:/C:/Users/hacon/OneDrive/Documents/GitHub/Group3_SWP391/src/java/controller/ChangePasswordController.java</file>
+            <file>file:/C:/Users/hacon/OneDrive/Documents/GitHub/Group3_SWP391/src/java/controller/BlogCRUD/AddNewPostController.java</file>
         </group>
     </open-files>
 </project-private>
