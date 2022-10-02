@@ -3,7 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/FULearning/Sem5/SWP391/Week4/Code/Group3_SWP391/Group3_SWP391/src/java/controller/HomeController.java</file>
+            <file>file:/D:/GitHub/Group3_SWP391/web/js/scripts_home.js</file>
+            <file>file:/D:/GitHub/Group3_SWP391/src/java/controller/ProfileController.java</file>
+            <file>file:/D:/GitHub/Group3_SWP391/web/profile.jsp</file>
+            <file>file:/D:/GitHub/Group3_SWP391/web/SubjectList.jsp</file>
+            <file>file:/D:/GitHub/Group3_SWP391/web/Home.jsp</file>
+            <file>file:/D:/GitHub/Group3_SWP391/web/WEB-INF/web.xml</file>
+            <file>file:/D:/GitHub/Group3_SWP391/nbproject/build-impl.xml</file>
         </group>
     </open-files>
 </project-private>
