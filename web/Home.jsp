@@ -68,7 +68,11 @@
             <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
                 <!-- Indicators/dots -->
-              
+                <div class="carousel-indicators">
+                    <c:forEach begin="0" end="${requestScope.totalSliderShow - 1}" var="sl">
+                        <button type="button" data-bs-target="#demo" data-bs-slide-to="${sl}" class="${sl == 0?"active":""}"></button>
+                    </c:forEach>
+                </div>
 
                 <!-- The slideshow/carousel -->
                 <div class="carousel-inner">
