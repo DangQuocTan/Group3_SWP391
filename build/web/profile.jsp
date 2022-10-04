@@ -55,7 +55,7 @@
 
                         <tr>
                             <td>Password</td>
-                            <td><a href="ChangePassword">Change password</a></td>
+                            <td><a href="ChangePass">Change password</a></td>
                         </tr>
                         <tr><td></td></tr>
 
