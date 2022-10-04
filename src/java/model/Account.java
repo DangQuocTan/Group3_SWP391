@@ -76,7 +76,6 @@ public class Account {
         this.modify_date = modify_date;
         this.password_token = password_token;
     }
-    
 
     public String getPassword_token() {
         return password_token;
