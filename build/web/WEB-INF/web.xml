@@ -20,18 +20,6 @@
         <servlet-name>Signup</servlet-name>
         <servlet-class>controller.Signup</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>SubjectLessonController</servlet-name>
-        <servlet-class>controller.LessonCRUD.SubjectLessonController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AddNewQuizController</servlet-name>
-        <servlet-class>controller.Quiz.AddNewQuizController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>profile</servlet-name>
-        <servlet-class>controller.ProfileController</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -52,27 +40,9 @@
         <servlet-name>Signup</servlet-name>
         <url-pattern>/Signup</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SubjectLessonController</servlet-name>
-        <url-pattern>/subject-lesson</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AddNewQuizController</servlet-name>
-        <url-pattern>/add-quiz</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>profile</servlet-name>
-        <url-pattern>/profile</url-pattern>
-    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
-    <listener>
-        <listener-class>
-            ApplicationServletContext
-        </listener-class>
-    </listener>
-    <!-- https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload -->
 </web-app>
