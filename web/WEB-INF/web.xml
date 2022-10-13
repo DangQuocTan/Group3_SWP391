@@ -24,6 +24,10 @@
         <servlet-name>PricePackageUpdate</servlet-name>
         <servlet-class>controller.PricePackage.PricePackageUpdate</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DashboardServlet</servlet-name>
+        <servlet-class>controller.Admin.DashboardServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>PricePackageUpdate</servlet-name>
         <url-pattern>/update-pricePackage</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/DashboardServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
