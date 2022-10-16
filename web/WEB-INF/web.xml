@@ -56,6 +56,38 @@
         <servlet-name>DashboardServlet</servlet-name>
         <url-pattern>/DashboardServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewSliderController</servlet-name>
+        <url-pattern>/add-slider</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditSliderController</servlet-name>
+        <url-pattern>/edit-slider</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchUrl</servlet-name>
+        <url-pattern>/SearchUrl</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SliderListController</servlet-name>
+        <url-pattern>/slider-list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/DashboardServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HideSliderController</servlet-name>
+        <url-pattern>/hide-slider</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchSliderController</servlet-name>
+        <url-pattern>/search-slider</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowSliderController</servlet-name>
+        <url-pattern>/show-slider</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
