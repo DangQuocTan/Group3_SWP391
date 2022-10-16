@@ -1,0 +1,9 @@
+jsp phiên bản mấy
+boottrap phiên bản bao nhiêu
+dùng thư viện gì
+hoàn thiện appDevProject_Design trong ngày 16/9(phần cứng, hệ điều hành, các farmwwork cần thiết)
+viết đầy đủ thông tin về farmwork, hệ điều hành, môi trường phát triển được dùng vào design
+phải mô tả các phần liên quan vào requirement 
+hoàn thành design vs srs trong ngày 16/9(context diagram)
+UML Package Diagram
+https://www.youtube.com/watch?v=gCuI41J-7GY
