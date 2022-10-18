@@ -3,24 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.PricePackage;
+package controller.Quiz;
 
-import dao.PricePackageDAO;
+import dao.QuizDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.PricePackage;
 
 /**
  *
- * @author Dell
+ * @author ADMIN
  */
-@WebServlet(name = "PricePackageCreate", urlPatterns = {"/create-pricePackage"})
-public class PricePackageCreate extends HttpServlet {
+public class AddNewQuizController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,15 +31,15 @@ public class PricePackageCreate extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PricePackageCreate</title>");
+            out.println("<title>Servlet AddNewQuizController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PricePackageCreate at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddNewQuizController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,7 +57,7 @@ public class PricePackageCreate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         
+        processRequest(request, response);
     }
 
     /**
@@ -74,13 +71,27 @@ public class PricePackageCreate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      String name = request.getParameter("name");
-        int acess = Integer.parseInt(request.getParameter("acessDuration"));
-        float price = Float.parseFloat(request.getParameter("price"));
-        float salePrice = Float.parseFloat(request.getParameter("salePrice"));
+//        processRequest(request, response);
+        String title = request.getParameter("title");
+        int subId = Integer.parseInt(request.getParameter("subId"));
         String description = request.getParameter("description");
-        PricePackage pricePack = new PricePackageDAO().createPricePackage(name, acess, price, salePrice, description);
-       response.sendRedirect("subject-detail?id="+2);
+        String level = request.getParameter("level");
+        int durarion = Integer.parseInt(request.getParameter("duration"));
+        Float rate = Float.parseFloat(request.getParameter("rate"));
+        String typeId = request.getParameter("typeId");
+        int lessonId = Integer.parseInt(request.getParameter("lessonId"));
+        int totalQues = Integer.parseInt(request.getParameter("totalQues"));
+        int attempt = Integer.parseInt(request.getParameter("attempt"));
+
+        if (totalQues > 30) {
+            request.getSession().setAttribute("messageQuiz", "Total Question must no more 30!!!");
+            response.sendRedirect("quiz-detail?action=add-quiz&message=1");
+        } else {
+            new QuizDAO().insertQuiz(title, subId, description, durarion, level, rate, typeId, lessonId, totalQues, attempt);
+            request.getSession().setAttribute("messageQuiz", "Add Successful!!!");
+            response.sendRedirect("quiz-list");
+        }
+        
     }
 
     /**

@@ -3,24 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.PricePackage;
+package controller.LessonCRUD;
 
-import dao.PricePackageDAO;
+import dao.LessonDAO;
+import dao.SliderDAO;
+import dao.SubjectDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import model.PricePackage;
+import java.util.List;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import model.Lesson;
+import model.Subject;
 
 /**
  *
- * @author Dell
+ * @author ADMIN
  */
-@WebServlet(name = "PricePackageCreate", urlPatterns = {"/create-pricePackage"})
-public class PricePackageCreate extends HttpServlet {
+@WebServlet(name = "SubjectLessonController", urlPatterns = {"/subject-lesson"})
+public class SubjectLessonController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +43,10 @@ public class PricePackageCreate extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PricePackageCreate</title>");
+            out.println("<title>Servlet SubjectLessonController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PricePackageCreate at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SubjectLessonController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,7 +64,14 @@ public class PricePackageCreate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         
+//        processRequest(request, response);
+        
+        List<Subject> listSubjects = new SubjectDAO().getAllSubjects();
+        
+        request.setAttribute("listSubjects", listSubjects);
+        request.setAttribute("table_lesson", "subject");
+
+        request.getRequestDispatcher("SubjectLesson.jsp").forward(request, response);
     }
 
     /**
@@ -74,13 +85,7 @@ public class PricePackageCreate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      String name = request.getParameter("name");
-        int acess = Integer.parseInt(request.getParameter("acessDuration"));
-        float price = Float.parseFloat(request.getParameter("price"));
-        float salePrice = Float.parseFloat(request.getParameter("salePrice"));
-        String description = request.getParameter("description");
-        PricePackage pricePack = new PricePackageDAO().createPricePackage(name, acess, price, salePrice, description);
-       response.sendRedirect("subject-detail?id="+2);
+        processRequest(request, response);
     }
 
     /**

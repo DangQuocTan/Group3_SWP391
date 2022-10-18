@@ -1,26 +1,30 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To changDe this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.PricePackage;
+package controller.Dimension;
 
+import dao.DimensionDAO;
 import dao.PricePackageDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import model.Dimension;
 import model.PricePackage;
+import model.Type;
 
 /**
  *
- * @author Dell
+ * @author 84969
  */
-@WebServlet(name = "PricePackageCreate", urlPatterns = {"/create-pricePackage"})
-public class PricePackageCreate extends HttpServlet {
+@WebServlet(name = "CreateDimension", urlPatterns = {"/CreateDimension"})
+public class CreateDimension extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +43,10 @@ public class PricePackageCreate extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PricePackageCreate</title>");
+            out.println("<title>Servlet CreateDimension</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PricePackageCreate at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CreateDimension at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,7 +64,11 @@ public class PricePackageCreate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         
+        int subId = Integer.parseInt(request.getParameter("subId"));
+        ArrayList<Type> listType = new DimensionDAO().getAllTypeDimension();
+        request.setAttribute("listType", listType);
+        request.setAttribute("subId", subId);
+        request.getRequestDispatcher("CreateDimension.jsp").forward(request, response);
     }
 
     /**
@@ -74,13 +82,29 @@ public class PricePackageCreate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      String name = request.getParameter("name");
-        int acess = Integer.parseInt(request.getParameter("acessDuration"));
-        float price = Float.parseFloat(request.getParameter("price"));
-        float salePrice = Float.parseFloat(request.getParameter("salePrice"));
+        int subjectId = (int) request.getSession().getAttribute("subId");
+        String typeId = request.getParameter("typeId");
+        String name = request.getParameter("name");
         String description = request.getParameter("description");
-        PricePackage pricePack = new PricePackageDAO().createPricePackage(name, acess, price, salePrice, description);
-       response.sendRedirect("subject-detail?id="+2);
+        DimensionDAO dimDao = new DimensionDAO();
+        Dimension dim = new Dimension(typeId, name, description);
+        dimDao.createDimension(dim);
+        Dimension dimAdd = dimDao.getDimensionByInfo(name, typeId, description);
+        boolean check = dimDao.createDimensionInSubject(subjectId, dimAdd.getDimId());
+        String message = "";
+        if (check == true) {
+            message = "Create dimension successful";
+        } else {
+            message = "Create dimension failed";
+        }
+
+        ArrayList<Dimension> listDimension = new DimensionDAO().getAllDimensionBySubjectId(subjectId);
+        ArrayList<PricePackage> listPricePackage = new PricePackageDAO().getAllPricePackageBuSubjectId(subjectId);
+        request.setAttribute("listDimension", listDimension);
+        request.setAttribute("id", subjectId);
+        request.setAttribute("listPricePackage", listPricePackage);
+        request.setAttribute("message", message);
+        request.getRequestDispatcher("Detail.jsp").forward(request, response);
     }
 
     /**

@@ -3,24 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.PricePackage;
+package controller.Dimensions;
 
+import dao.DimensionDAO;
 import dao.PricePackageDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Dimension;
 import model.PricePackage;
 
 /**
  *
- * @author Dell
+ * @author ADMIN
  */
-@WebServlet(name = "PricePackageCreate", urlPatterns = {"/create-pricePackage"})
-public class PricePackageCreate extends HttpServlet {
+@WebServlet(name = "DimensionListController", urlPatterns = {"/dimension-list"})
+public class DimensionListController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +42,10 @@ public class PricePackageCreate extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PricePackageCreate</title>");
+            out.println("<title>Servlet DimensionListController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PricePackageCreate at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet DimensionListController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,7 +63,18 @@ public class PricePackageCreate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         
+//        processRequest(request, response);
+//        int subjectId = Integer.parseInt(request.getParameter("id"));
+
+        List<Dimension> listAllDimension = new DimensionDAO().getAllDimension();
+//        List<Dimension> listDimensionBySubjectId = new DimensionDAO().getAllDimensionBySubjectId(subjectId);
+        List<PricePackage> listAllPricePackage = new PricePackageDAO().getAllPackage();
+
+        request.setAttribute("listAllDimension", listAllDimension);
+//        request.setAttribute("listDimensionBySubjectId", listDimensionBySubjectId);
+        request.setAttribute("listAllPricePackage", listAllPricePackage);
+        
+        request.getRequestDispatcher("DimensionAndPackage.jsp").forward(request, response);
     }
 
     /**
@@ -74,13 +88,7 @@ public class PricePackageCreate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      String name = request.getParameter("name");
-        int acess = Integer.parseInt(request.getParameter("acessDuration"));
-        float price = Float.parseFloat(request.getParameter("price"));
-        float salePrice = Float.parseFloat(request.getParameter("salePrice"));
-        String description = request.getParameter("description");
-        PricePackage pricePack = new PricePackageDAO().createPricePackage(name, acess, price, salePrice, description);
-       response.sendRedirect("subject-detail?id="+2);
+        processRequest(request, response);
     }
 
     /**

@@ -3,24 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.PricePackage;
+package controller.PackagePrice;
 
+import controller.PricePackage.*;
+import dao.DimensionDAO;
 import dao.PricePackageDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Dimension;
 import model.PricePackage;
 
 /**
  *
  * @author Dell
  */
-@WebServlet(name = "PricePackageCreate", urlPatterns = {"/create-pricePackage"})
-public class PricePackageCreate extends HttpServlet {
+@WebServlet(name = "PackagePriceUpdate", urlPatterns = {"/PricePackageUpdateInSubject"})
+public class PackagePriceUpdate extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +43,10 @@ public class PricePackageCreate extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PricePackageCreate</title>");
+            out.println("<title>Servlet PricePackageUpdate</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PricePackageCreate at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PricePackageUpdate at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,7 +64,12 @@ public class PricePackageCreate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         
+        int priceId = Integer.parseInt(request.getParameter("priceId"));
+//        Dimension dim = new DimensionDAO().getDimensionById(dimId);
+        PricePackage pricePack = new PricePackageDAO().getPricePackageById(priceId);
+//        request.setAttribute("dim", dim);
+        request.setAttribute("pricePack", pricePack);
+        request.getRequestDispatcher("EditPricePackage.jsp").forward(request, response);
     }
 
     /**
@@ -74,13 +83,29 @@ public class PricePackageCreate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      String name = request.getParameter("name");
+//                int dimId = Integer.parseInt(request.getParameter("dimId"));
+//        String type = request.getParameter("typeId");
+//        String name = request.getParameter("name");
+//        String description = request.getParameter("description");
+//        
+//        Dimension dim = new Dimension(dimId, type, name, description);
+//        new DimensionDAO().updateDimension(dim);
+//        response.sendRedirect("subject-detail?id="+dimId);
+        int subjectId =  (int) request.getSession().getAttribute("subId");
+        int priceId = Integer.parseInt(request.getParameter("priceId"));
+        String name = request.getParameter("name");
         int acess = Integer.parseInt(request.getParameter("acessDuration"));
         float price = Float.parseFloat(request.getParameter("price"));
         float salePrice = Float.parseFloat(request.getParameter("salePrice"));
+        boolean status = Boolean.parseBoolean(request.getParameter("status"));
         String description = request.getParameter("description");
-        PricePackage pricePack = new PricePackageDAO().createPricePackage(name, acess, price, salePrice, description);
-       response.sendRedirect("subject-detail?id="+2);
+        ArrayList<Dimension> listDimension = new DimensionDAO().getAllDimensionBySubjectId(subjectId);
+        ArrayList<PricePackage> listPricePackage = new PricePackageDAO().getAllPricePackageBuSubjectId(subjectId);
+        request.setAttribute("listDimension", listDimension);
+        request.setAttribute("id", subjectId);
+        request.setAttribute("listPricePackage", listPricePackage);
+        PricePackage pricePack = new PricePackageDAO().updatePricePackage(priceId, name, acess, price, salePrice, status, description);
+        response.sendRedirect("DispatchServlet?btAction=EditSubject&id="+subjectId);
     }
 
     /**

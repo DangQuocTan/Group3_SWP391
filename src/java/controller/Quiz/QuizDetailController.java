@@ -3,24 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.PricePackage;
+package controller.Quiz;
 
-import dao.PricePackageDAO;
+import dao.LessonDAO;
+import dao.QuizDAO;
+import dao.SubjectDAO;
+import dao.TypeDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.PricePackage;
+import model.Lesson;
+import model.Quiz;
+import model.Subject;
+import model.Type;
 
 /**
  *
- * @author Dell
+ * @author ADMIN
  */
-@WebServlet(name = "PricePackageCreate", urlPatterns = {"/create-pricePackage"})
-public class PricePackageCreate extends HttpServlet {
+@WebServlet(name = "QuizDetailController", urlPatterns = {"/quiz-detail"})
+public class QuizDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,15 +41,15 @@ public class PricePackageCreate extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try ( PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet PricePackageCreate</title>");
+            out.println("<title>Servlet QuizDetailController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet PricePackageCreate at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet QuizDetailController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -60,7 +67,44 @@ public class PricePackageCreate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         
+//        processRequest(request, response);
+        String action = request.getParameter("action");
+        int message = Integer.parseInt(request.getParameter("message"));
+//        if (action.equalsIgnoreCase("edit-quiz")) {
+//            int quizId = Integer.parseInt(request.getParameter("quizId"));
+//            Quiz quizByQuizId = new QuizDAO().getQuizByQuizId(quizId);
+//
+//            request.setAttribute("quizByQuizId", quizByQuizId);
+//        } else if (action.equalsIgnoreCase("add-quiz")) {
+//
+//        }
+        switch (action) {
+            case "edit-quiz":
+                int quizId = Integer.parseInt(request.getParameter("quizId"));
+                Quiz quizByQuizId = new QuizDAO().getQuizByQuizId(quizId);
+
+                request.setAttribute("quizByQuizId", quizByQuizId);
+                request.getSession().setAttribute("quizId", quizId);
+                request.getSession().setAttribute("action", "edit-quiz");
+                break;
+
+            case "add-quiz":
+                request.getSession().setAttribute("action", "add-quiz");
+                break;
+        }
+
+        List<Lesson> listLessons = new LessonDAO().getAllLessons();
+        List<Subject> listSubjects = new SubjectDAO().getAllSubjects();
+        List<Type> listTypeQuizes = new TypeDAO().getListTypeQuizes();
+
+        request.setAttribute("listLessons", listLessons);
+        request.setAttribute("listSubjects", listSubjects);
+        request.setAttribute("listTypeQuizes", listTypeQuizes);
+        if (message == 0) {
+            request.getSession().setAttribute("messageQuiz", "");
+        }
+
+        request.getRequestDispatcher("QuizDetail.jsp").forward(request, response);
     }
 
     /**
@@ -74,13 +118,7 @@ public class PricePackageCreate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      String name = request.getParameter("name");
-        int acess = Integer.parseInt(request.getParameter("acessDuration"));
-        float price = Float.parseFloat(request.getParameter("price"));
-        float salePrice = Float.parseFloat(request.getParameter("salePrice"));
-        String description = request.getParameter("description");
-        PricePackage pricePack = new PricePackageDAO().createPricePackage(name, acess, price, salePrice, description);
-       response.sendRedirect("subject-detail?id="+2);
+        processRequest(request, response);
     }
 
     /**
