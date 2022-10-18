@@ -1,9 +1,10 @@
 <%-- 
-    Document   : test
-    Created on : May 25, 2022, 8:15:23 PM
-    Author     : ADMIN
+    Document   : subject
+    Created on : May 25, 2022, 9:42:14 PM
+    Author     : 84969
 --%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -41,50 +42,81 @@
     </head>
 
     <body class="sb-sidenav-toggled">
-        <%@include file="components/navBarComponent.jsp" %>
 
+        <%@include file="components/navBarComponent.jsp" %>
         <div id="layoutSidenav" class="mb-4">
             <%@include file="components/catgoryComponent_1.jsp" %>
+
+
             <div id="layoutSidenav_content">
                 <div class="container-fluid px-4 px-lg-5 mb-5 row" style="margin-top: 91px">
                     <h1>Subject List</h1>
-                    <div class="col-6"></div>
-                    <div class="me-5 col-3" style="float: right;">
-                        <form action="SearchUrl" method="POST" class="d-flex">
+                    <div class="col-md-12">
+                        <!--                    <div>
+                                                <article style="float: right">
+                                                    <h6>
+                                                        <a href="DispatchServlet?btAction=CreateForm">Add new subject </a>
+                                                    </h6>
+                        
+                                                </article>
+                                            </div>
+                        
+                                            <article  style="float: right">
+                                                <header>
+                                                    <h6>Filter by status</h6>
+                                                </header>
+                                                <div>
+                                                    <form action="DispatchServlet" method="post">
+                                                        <input type="radio" name="statusFilter" value="1" checked="checked" /> Active
+                                                        <input type="radio" name="statusFilter" value="0" checked="checked" /> Un-Active
+                                                        <button name="btAction" value="Search" type="submit">Filter</button>
+                                                    </form>
+                                                </div>
+                                            </article>-->
+
+                        <form action="DispatchServlet" method="POST" class="d-flex" style="width: 600px; float: right !important">
                             <div class="input-group">
-                                <input type="search" name="keyword" id="form1" class="form-control" placeholder="Search"/>
-                                <!--<label class="form-label" for="form1">Search</label>-->
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-search"></i>
-                                </button>
+                                <input type="radio" name="statusFilter" value="1" class="mx-2 my-1"/>Active
+                                <input type="radio" name="statusFilter" value="0" class="mx-2 my-1"/>Inactive
+                                <button name="btAction" value="Filter" type="submit" class="btn btn-primary ms-4" style="border-radius: 5px !important">Filter</button>
+                                <a href="DispatchServlet?btAction=CreateForm" class="btn btn-primary ms-4" style="border-radius: 5px"/>Add New Subject</a>
                             </div>
                         </form>
                     </div>
-                    <div class ="row mt-5">
-                        <c:forEach var="s" items="${sessionScope.listSubjectsByPagging}">
-                            <div class="col-md-4 mb-3 mx-auto d-block shadow p-3 mb-5 bg-white rounded" style="padding: 10px 0px 10px 10px; border-radius: 8px; width: 32%; margin-left: 10px">
-                                <form action="subject-detail" method="POST">
-                                    <img class="mx-auto d-block" src="${s.getThumbnail()}" />
-                                    <h2 class="text-center"> ${s.getSubjectName()} </h2>
-                                    <ul style="margin-left: 8%">
-                                        <li><b>${s.getTagLine()}</b></li>
-                                        <li><b>${s.getTitle()}</b></li>
-                                        <li><b>3200-10000</b></li>
-                                    </ul>
-                                    <div class="text-center">
-                                        <a href="subject-detail?id=${s.getSubjectId()}" class="btn btn-primary"/>Detail</a>
-                                    </div>
+                    <c:if test="${message !=null}">
+                        <p>${message}</p>
+                    </c:if>
 
-                                </form>
+                    <div class ="row mt-5">
+                        <c:forEach var="s" items="${listSubjects}">
+                            <div class="col-md-4 mb-3 mx-auto d-block shadow p-3 mb-5 bg-white rounded" style="padding: 10px 0px 10px 10px; border-radius: 8px; width: 32%; margin-left: 10px">
+                                <div>
+                                    <h4>${s.getSubjectId()}</h4>
+                                    <img class="mx-auto d-block rounded-circle img-thumbnail" src="${s.status == 'false'?"photo/":""}${s.getThumbnail()}"/>
+                                    <h2 class="text-center"> ${s.getSubjectName()} </h2>
+                                    <!--                                    <input id="file-upload" type="file" name="photo"/>-->
+                                </div>
+                                <div class="card-body bg-white mt-0"  style="margin-left: 8%">
+                                    <b class="mb-1">Status: </b> ${s.status == 'true'?"Active":"Inactive"}<br>
+                                    <b class="mb-1">Title: </b>${s.getTitle()}<br>
+                                    <b class="mb-1">Tag Line: </b>${s.getTagLine()}<br>
+                                    <b class="mb-1">Description: </b>${s.getDescription()}<br>
+                                </div>
+
+                                <div class="text-center">
+                                    <a href="DispatchServlet?btAction=EditSubject&id=${s.getSubjectId()}">Edit</a>
+
+                                </div>
                             </div>
                         </c:forEach>
 
                     </div>
+
                 </div>
             </div>
         </div>
         <c:choose>
-            <c:when test="${listSubjectsByPagging==null || listSubjectsByPagging.size()==0}">
+            <c:when test="${listSubjects==null || listSubjects.size()==0}">
                 Not founds
             </c:when>
             <c:when test="${totalPage < 2}">

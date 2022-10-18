@@ -66,6 +66,7 @@
 
                         </div>
 
+
                         <!-- Side widgets-->
                         <div class="col-lg-4">
 
