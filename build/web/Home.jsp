@@ -56,7 +56,6 @@
                         <li class="nav-item"><a class="nav-link" href="#sliders">Sliders</a></li>
                         <li class="nav-item"><a class="nav-link" href="#subjects">Subjects</a></li>
                         <li class="nav-item"><a class="nav-link" href="#posts">Posts</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#team">Team</a></li>
                         <li class="nav-item"><a class="nav-link" href="Login.jsp">Login</a></li>
                     </ul>
                 </div>
@@ -217,7 +216,7 @@
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2022</div>
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; Group 3_SE1629</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>

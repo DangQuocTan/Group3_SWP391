@@ -5,10 +5,7 @@
  */
 package Base;
 
-/**
- *
- * @author thuong
- */
+
 public class Base {
         public final static String USERNAME_EMAIL = "Tandqhe153259@fpt.edu.vn";
     public final static String PASSWORD_EMAIL = "tantantan";
