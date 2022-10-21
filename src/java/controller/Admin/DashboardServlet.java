@@ -1,13 +1,8 @@
 /*
- * Copyright 2022 Fangl
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Fangl
- * which accompanies this distribution, and is available at
- * https://github.com/fanglong-it
- *
- * Contributors:
- *    Fangl - initial API and implementation and/or initial documentation
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
+
 package controller.Admin;
 
 import dao.AccountDAO;
