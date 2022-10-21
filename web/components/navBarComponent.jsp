@@ -26,9 +26,9 @@
             </div>
 
 
-            <c:if test="${sessionScope.account.role.getRole_name() eq 'ADMIN'}">
-                <a href="DashboardServlet?year=${sessionScope.currentYear}" class="btn m2-1 me-2 pb-1">
-                    <i class="bi bi-speedometer2 text-white me-2"></i><span class="text-white">DashBoard</span>
+            <c:if test="${sessionScope.account.role eq 'ADMIN'}">
+                <a href="DashboardServlet?year=${sessionScope.currentYear}" class="btn ms-1 me-2 pb-1">
+                    <i class="bi bi-speedometer2"></i><span class="text-white">DashBoard</span>
                 </a>
             </c:if>
             <c:choose>

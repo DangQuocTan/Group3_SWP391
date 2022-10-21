@@ -21,76 +21,12 @@
         <servlet-class>controller.Signup</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>VerifyController</servlet-name>
-        <servlet-class>controller.VerifyController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>RegistrationListController</servlet-name>
-        <servlet-class>controller.Registration.RegistrationListController</servlet-class>
+        <servlet-name>PricePackageUpdate</servlet-name>
+        <servlet-class>controller.PricePackage.PricePackageUpdate</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DashboardServlet</servlet-name>
         <servlet-class>controller.Admin.DashboardServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SubjectRegister</servlet-name>
-        <servlet-class>controller.SubjectRegister</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>LessonQuizController</servlet-name>
-        <servlet-class>controller.LessonCRUD.LessonQuizController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ListAccountController</servlet-name>
-        <servlet-class>controller.AccountAdmin.ListAccountController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SubjectListAdmin</servlet-name>
-        <servlet-class>controller.Subject.SubjectListAdmin</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CreateController</servlet-name>
-        <servlet-class>controller.Subject.CreateController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CreateFormController</servlet-name>
-        <servlet-class>controller.Subject.CreateFormController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>EditSubjectController</servlet-name>
-        <servlet-class>controller.Subject.EditSubjectController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DispatchServlet</servlet-name>
-        <servlet-class>controller.DispatchServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UpdateController</servlet-name>
-        <servlet-class>controller.Subject.UpdateController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SubjectDetailAdminController</servlet-name>
-        <servlet-class>controller.Subject.SubjectDetailAdminController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DoQuizzServlet</servlet-name>
-        <servlet-class>controller.Quiz.DoQuizzServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PracticeQuizzServlet</servlet-name>
-        <servlet-class>controller.Quiz.PracticeQuizzServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PracticeListController</servlet-name>
-        <servlet-class>controller.Practice.PracticeListController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>QuizDetailReviewController</servlet-name>
-        <servlet-class>controller.Quiz.QuizDetailReviewController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ReviewQuizzServlet</servlet-name>
-        <servlet-class>controller.Quiz.ReviewQuizzServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
@@ -113,76 +49,44 @@
         <url-pattern>/Signup</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>VerifyController</servlet-name>
-        <url-pattern>/Verify</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RegistrationListController</servlet-name>
-        <url-pattern>/regis-list</url-pattern>
+        <servlet-name>PricePackageUpdate</servlet-name>
+        <url-pattern>/update-pricePackage</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>DashboardServlet</servlet-name>
         <url-pattern>/DashboardServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SubjectRegister</servlet-name>
-        <url-pattern>/subject-resgister</url-pattern>
+        <servlet-name>AddNewSliderController</servlet-name>
+        <url-pattern>/add-slider</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>LessonQuizController</servlet-name>
-        <url-pattern>/lesson-quiz</url-pattern>
+        <servlet-name>EditSliderController</servlet-name>
+        <url-pattern>/edit-slider</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ListAccountController</servlet-name>
-        <url-pattern>/list-account</url-pattern>
+        <servlet-name>SearchUrl</servlet-name>
+        <url-pattern>/SearchUrl</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SubjectListAdmin</servlet-name>
-        <url-pattern>/SubjectListAdmin</url-pattern>
+        <servlet-name>SliderListController</servlet-name>
+        <url-pattern>/slider-list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CreateController</servlet-name>
-        <url-pattern>/CreateController</url-pattern>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/DashboardServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CreateFormController</servlet-name>
-        <url-pattern>/CreateFormController</url-pattern>
+        <servlet-name>HideSliderController</servlet-name>
+        <url-pattern>/hide-slider</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditSubjectController</servlet-name>
-        <url-pattern>/EditSubjectController</url-pattern>
+        <servlet-name>SearchSliderController</servlet-name>
+        <url-pattern>/search-slider</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DispatchServlet</servlet-name>
-        <url-pattern>/DispatchServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UpdateController</servlet-name>
-        <url-pattern>/UpdateController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SubjectDetailAdminController</servlet-name>
-        <url-pattern>/SubjectDetailAdminController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DoQuizzServlet</servlet-name>
-        <url-pattern>/DoQuizzServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PracticeQuizzServlet</servlet-name>
-        <url-pattern>/PracticeQuizzServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PracticeListController</servlet-name>
-        <url-pattern>/practice-list</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>QuizDetailReviewController</servlet-name>
-        <url-pattern>/QuizDetailReview</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ReviewQuizzServlet</servlet-name>
-        <url-pattern>/ReviewQuizzServlet</url-pattern>
+        <servlet-name>ShowSliderController</servlet-name>
+        <url-pattern>/show-slider</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

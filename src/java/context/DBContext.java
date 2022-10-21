@@ -19,10 +19,10 @@ public class DBContext {
      public static Connection makeConnection() throws Exception {
         Connection cn = null;
         String IP = "localhost";
-        String instanceName = "DESKTOP-00K4NLC\\TANBEO";
+        String instanceName = "DuaHau\\SQLEXPRESS";
         String port = "1433";
         String uid = "sa";
-        String pwd = "123";
+        String pwd = "admin";
         String db = "SWP391_Project_Test";
         String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
         String url = "jdbc:sqlserver://" + IP + "\\" + instanceName + ":" + port

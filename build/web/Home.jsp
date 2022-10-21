@@ -1,7 +1,7 @@
 <%-- 
     Document   : Home
-    Created on : Sep 29, 2022, 6:44:39 PM
-    Author     : hieud
+    Created on : May 23, 2022, 10:15:28 AM
+    Author     : ADMIN
 --%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -12,32 +12,24 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <!-- Latest compiled and minified CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css
-" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
         <!-- Latest compiled JavaScript -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js
-"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css
-" rel="stylesheet" />
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 
         <!-- Core theme JS-->
         <script src="js/scripts_home.js"></script>
         <link href="css/styles_home.css" rel="stylesheet" />
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js
-"></script>
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js
-"></script>
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js
-" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
-        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700
-" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700
-" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
 
 
@@ -62,25 +54,20 @@
             </div>
         </nav>
         <!-- Masthead-->
-        <!--        <header class="masthead" style="background-image: url('images/bg-header.jpg')">
+                <header class="masthead" style="background-image: url('images/bg-header.jpg')">
                     <div class="container">
                         <div class="masthead-subheading">Welcome To Quiz Question!</div>
                         <div class="masthead-heading text-uppercase">It's Nice To Meet You</div>
                         <a class="btn btn-primary btn-xl text-uppercase" href="#subjects">Tell Me More</a>
                     </div>
-                </header>-->
+                </header>
 
         <!-- Slider --!>
         <!-- Carousel -->
         <section class="page-section bg-light" id="sliders" style="padding-top: 5px">
             <div id="demo" class="carousel slide" data-bs-ride="carousel">
 
-                <!-- Indicators/dots -->
-                <div class="carousel-indicators">
-                    <c:forEach begin="0" end="${requestScope.totalSliderShow - 1}" var="sl">
-                        <button type="button" data-bs-target="#demo" data-bs-slide-to="${sl}" class="${sl == 0?"active":""}"></button>
-                    </c:forEach>
-                </div>
+
 
                 <!-- The slideshow/carousel -->
                 <div class="carousel-inner">
@@ -216,7 +203,7 @@
         <footer class="footer py-4">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-4 text-lg-start">Copyright &copy; Group 3_SE1629</div>
+                    <div class="col-lg-4 text-lg-start">Copyright &copy; Your Website 2022</div>
                     <div class="col-lg-4 my-3 my-lg-0">
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a class="btn btn-dark btn-social mx-2" href="#!" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
