@@ -28,102 +28,6 @@
         <servlet-name>DashboardServlet</servlet-name>
         <servlet-class>controller.Admin.DashboardServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>PricePackageCreate</servlet-name>
-        <servlet-class>controller.PricePackage.PricePackageCreate</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PricePackageDelete</servlet-name>
-        <servlet-class>controller.PricePackage.PricePackageDelete</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UpdatePriceAsync</servlet-name>
-        <servlet-class>controller.PricePackage.UpdatePriceAsync</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CreateController</servlet-name>
-        <servlet-class>controller.Subject.CreateController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CreateFormController</servlet-name>
-        <servlet-class>controller.Subject.CreateFormController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>EditSubjectController</servlet-name>
-        <servlet-class>controller.Subject.EditSubjectController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>FilterStatusController</servlet-name>
-        <servlet-class>controller.Subject.FilterStatusController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SubjectDetailAdminController</servlet-name>
-        <servlet-class>controller.Subject.SubjectDetailAdminController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SubjectListAdmin</servlet-name>
-        <servlet-class>controller.Subject.SubjectListAdmin</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UpdateController</servlet-name>
-        <servlet-class>controller.Subject.UpdateController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DispatchServlet</servlet-name>
-        <servlet-class>controller.DispatchServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>SubjectRegister</servlet-name>
-        <servlet-class>controller.SubjectRegister</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CreateDimension</servlet-name>
-        <servlet-class>controller.Dimension.CreateDimension</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeleteDimension</servlet-name>
-        <servlet-class>controller.Dimension.DeleteDimension</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>EditDimension</servlet-name>
-        <servlet-class>controller.Dimension.EditDimension</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DimensionCreated</servlet-name>
-        <servlet-class>controller.Dimensions.DimensionCreated</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DimensionDelete</servlet-name>
-        <servlet-class>controller.Dimensions.DimensionDelete</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DimensionListController</servlet-name>
-        <servlet-class>controller.Dimensions.DimensionListController</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DimensionUpdate</servlet-name>
-        <servlet-class>controller.Dimensions.DimensionUpdate</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>UpdateDimensionAsync</servlet-name>
-        <servlet-class>controller.Dimensions.UpdateDimensionAsync</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>AddPackageInSubject</servlet-name>
-        <servlet-class>controller.PackagePrice.AddPackageInSubject</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>DeletePackageInSubject</servlet-name>
-        <servlet-class>controller.PackagePrice.DeletePackageInSubject</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>InforPackagePrice</servlet-name>
-        <servlet-class>controller.PackagePrice.InforPackagePrice</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>PackagePriceUpdate</servlet-name>
-        <servlet-class>controller.PricePackage.UpdatePriceAsync</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>HomeController</servlet-name>
         <url-pattern>/home</url-pattern>
@@ -145,108 +49,44 @@
         <url-pattern>/Signup</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DashboardServlet</servlet-name>
-        <url-pattern>/DashboardServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PricePackageCreate</servlet-name>
-        <url-pattern>/create-pricePackage</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PricePackageDelete</servlet-name>
-        <url-pattern>/delete-pricePackage</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>PricePackageUpdate</servlet-name>
         <url-pattern>/update-pricePackage</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UpdatePriceAsync</servlet-name>
-        <url-pattern>/update-price-async</url-pattern>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/DashboardServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CreateController</servlet-name>
-        <url-pattern>/CreateController</url-pattern>
+        <servlet-name>AddNewSliderController</servlet-name>
+        <url-pattern>/add-slider</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CreateFormController</servlet-name>
-        <url-pattern>/CreateFormController</url-pattern>
+        <servlet-name>EditSliderController</servlet-name>
+        <url-pattern>/edit-slider</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>EditSubjectController</servlet-name>
-        <url-pattern>/EditSubjectController</url-pattern>
+        <servlet-name>SearchUrl</servlet-name>
+        <url-pattern>/SearchUrl</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>FilterStatusController</servlet-name>
-        <url-pattern>/FilterStatusController</url-pattern>
+        <servlet-name>SliderListController</servlet-name>
+        <url-pattern>/slider-list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SubjectDetailAdminController</servlet-name>
-        <url-pattern>/SubjectDetailAdminController</url-pattern>
+        <servlet-name>DashboardServlet</servlet-name>
+        <url-pattern>/DashboardServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SubjectListAdmin</servlet-name>
-        <url-pattern>/SubjectListAdmin</url-pattern>
+        <servlet-name>HideSliderController</servlet-name>
+        <url-pattern>/hide-slider</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>UpdateController</servlet-name>
-        <url-pattern>/UpdateController</url-pattern>
+        <servlet-name>SearchSliderController</servlet-name>
+        <url-pattern>/search-slider</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>DispatchServlet</servlet-name>
-        <url-pattern>/DispatchServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>SubjectRegister</servlet-name>
-        <url-pattern>/subject-resgister</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CreateDimension</servlet-name>
-        <url-pattern>/CreateDimension</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeleteDimension</servlet-name>
-        <url-pattern>/DeleteDimension</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EditDimension</servlet-name>
-        <url-pattern>/EditDimension</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DimensionCreated</servlet-name>
-        <url-pattern>/create-dimension</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DimensionDelete</servlet-name>
-        <url-pattern>/delete-dimension</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DimensionListController</servlet-name>
-        <url-pattern>/dimension-list</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DimensionUpdate</servlet-name>
-        <url-pattern>/update-dimension</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>UpdateDimensionAsync</servlet-name>
-        <url-pattern>/update_dimension-async</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AddPackageInSubject</servlet-name>
-        <url-pattern>/AddPackageInSubject</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>DeletePackageInSubject</servlet-name>
-        <url-pattern>/DeletePackageInSubject</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>InforPackagePrice</servlet-name>
-        <url-pattern>/update_price_async</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>PackagePriceUpdate</servlet-name>
-        <url-pattern>/PricePackageUpdateInSubject</url-pattern>
+        <servlet-name>ShowSliderController</servlet-name>
+        <url-pattern>/show-slider</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

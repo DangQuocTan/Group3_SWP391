@@ -60,7 +60,7 @@ public class PricePackageCreate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         
+        request.getRequestDispatcher("PricePackageCreate.jsp").forward(request, response);
     }
 
     /**
@@ -74,13 +74,13 @@ public class PricePackageCreate extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      String name = request.getParameter("name");
+        String name = request.getParameter("name");
         int acess = Integer.parseInt(request.getParameter("acessDuration"));
         float price = Float.parseFloat(request.getParameter("price"));
         float salePrice = Float.parseFloat(request.getParameter("salePrice"));
         String description = request.getParameter("description");
         PricePackage pricePack = new PricePackageDAO().createPricePackage(name, acess, price, salePrice, description);
-       response.sendRedirect("subject-detail?id="+2);
+       response.sendRedirect("subject-detail?id=" + 2);
     }
 
     /**
