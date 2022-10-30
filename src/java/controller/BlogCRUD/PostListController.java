@@ -56,6 +56,7 @@ public class PostListController extends HttpServlet {
             List<Post> listPosts = new PostDAO().getPostsAndPagging(page, PAGE_SIZE);
             List<Blog> listBlogs = new BlogDAO().getListBlogs();
             Post lastPost = new PostDAO().getLastPost();
+            
 
             request.setAttribute("lastPost", lastPost);
             request.setAttribute("listPosts", listPosts);
