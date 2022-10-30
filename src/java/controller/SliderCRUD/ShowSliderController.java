@@ -43,7 +43,7 @@ public class ShowSliderController extends HttpServlet {
             out.println("<title>Servlet ShowSliderController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ShowSliderController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ShowSliderController  at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
