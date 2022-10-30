@@ -43,6 +43,7 @@ public class PostListController extends HttpServlet {
         if (pageStr != null) {
             page = Integer.parseInt(pageStr);
         }
+        
         int totalSearch = 0;
         int totalPage = 0;
         String blogAction = request.getParameter("blogAction");
