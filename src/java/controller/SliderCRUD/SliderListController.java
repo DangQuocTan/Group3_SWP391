@@ -43,7 +43,7 @@ public class SliderListController extends HttpServlet {
             out.println("<title>Servlet SliderListController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SliderListController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet SliderListController  at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
