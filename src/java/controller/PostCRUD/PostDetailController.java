@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.BlogCRUD;
+package controller.PostCRUD;
 
 import dao.BlogDAO;
 import dao.PostDAO;
@@ -16,13 +16,14 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Blog;
+import model.Post;
 
 /**
  *
  * @author ADMIN
  */
-@WebServlet(name = "AddNewPostController", urlPatterns = {"/add-post"})
-public class AddNewPostController extends HttpServlet {
+@WebServlet(name = "PostDetailController", urlPatterns = {"/post-detail"})
+public class PostDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +42,10 @@ public class AddNewPostController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddNewPostController</title>");
+            out.println("<title>Servlet PostDetailController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddNewPostController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PostDetailController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,11 +64,14 @@ public class AddNewPostController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        int postId = Integer.parseInt(request.getParameter("postId"));
+        Post post = new PostDAO().getPostById(postId);
         List<Blog> listBlogs = new BlogDAO().getListBlogs();
-
+        
+        request.setAttribute("post", post);
         request.setAttribute("listBlogs", listBlogs);
-
-        request.getRequestDispatcher("AddNewPost.jsp").forward(request, response);
+        
+        request.getRequestDispatcher("PostDetail.jsp").forward(request, response);
     }
 
     /**
@@ -81,18 +85,7 @@ public class AddNewPostController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        int blogId = Integer.parseInt(request.getParameter("blogId"));
-        String title = request.getParameter("title");
-        boolean status = Boolean.parseBoolean(request.getParameter("status"));
-        String thumbnail = request.getParameter("thumbnail");
-        String briefInfor = request.getParameter("briefInfor");
-        String content = request.getParameter("description");
-
-        new PostDAO().insertPost(blogId, title, status, thumbnail, briefInfor, content);
-        
-        response.sendRedirect("post-list");
-
+        processRequest(request, response);
     }
 
     /**

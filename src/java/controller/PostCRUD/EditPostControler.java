@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.BlogCRUD;
+package controller.PostCRUD;
 
 import dao.PostDAO;
 import java.io.IOException;
@@ -42,7 +42,7 @@ public class EditPostControler extends HttpServlet {
             out.println("<title>Servlet EditPostControler</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditPostController at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditPostControler at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
