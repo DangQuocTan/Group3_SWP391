@@ -3,25 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.SliderCRUD;
+package controller.Practice;
 
-import dao.SliderDAO;
+import dao.DimensionDAO;
+import dao.PracticeDAO;
+import dao.QuizDAO;
+import dao.SubjectDAO;
+import dao.TopicDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Slider;
+import model.Account;
+import model.Dimension;
+import model.Practice;
+import model.Quiz;
+import model.Subject;
+import model.Topic;
 
 /**
  *
- * @author ADMIN
+ * @author 84969
  */
-@WebServlet(name = "ShowSliderController", urlPatterns = {"/show-slider"})
-public class ShowSliderController extends HttpServlet {
+@WebServlet(name = "PracticeDetailController", urlPatterns = {"/PraticeDetail"})
+public class PracticeDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +50,10 @@ public class ShowSliderController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ShowSliderController</title>");
+            out.println("<title>Servlet PraticeDetailController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ShowSliderController  at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PraticeDetailController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -61,31 +71,29 @@ public class ShowSliderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        final int PAGE_SIZE = 3;
-        int page = 1;
-        String pageStr = request.getParameter("page");
-        if (pageStr != null) {
-            page = Integer.parseInt(pageStr);
+        Account acc = (Account) request.getSession().getAttribute("account");
+        int userId = acc.getUserid();
+        String action = request.getParameter("action");
+        List<Subject> listSubjects = new SubjectDAO().getAllSubjects();
+        //ArrayList<Quiz> listQuizs = new QuizDAO().getListQuizzesBySubId(subId);
+        ArrayList<Quiz> listQuizs = new QuizDAO().getAllQuiz();
+        switch (action) {
+            case "add":
+                request.getSession().setAttribute("action", "add");
+                break;
+            case "detail":
+                int quizId = Integer.parseInt(request.getParameter("quizId"));
+                int attempt = Integer.parseInt(request.getParameter("attempt"));
+                Practice practice = new PracticeDAO().getPracticeDetail(userId, quizId, attempt);
+                //ArrayList<Quiz> listQuizs = new QuizDAO().getListQuizzesBySubId(subId);
+                request.getSession().setAttribute("action", "detail");
+                request.setAttribute("practice", practice);  
+                break;
         }
-        int totalSearch = new SliderDAO().getTotalSlider();
-        int totalPage = totalSearch / PAGE_SIZE;
-        if (totalSearch % PAGE_SIZE != 0) {
-            totalPage += 1;
-        }
-
-        int sliderId = Integer.parseInt(request.getParameter("id"));
-        boolean status = new SliderDAO().getStatusBySliderId(sliderId);
-        new SliderDAO().updateSliderShow(sliderId);
-
-        List<Slider> listSliders = new SliderDAO().getAllSliders();
-        List<Slider> listSlidersByPagging = new SliderDAO().getListSlidersByPagging(page, PAGE_SIZE);
-
-        request.getSession().setAttribute("listSliders", listSliders);
-        request.getSession().setAttribute("listSlidersByPagging", listSlidersByPagging);
-        request.getSession().setAttribute("status", status);
-
-        response.sendRedirect("slider-list");
+        
+        request.setAttribute("listQuizs", listQuizs);
+        request.setAttribute("listSubjects", listSubjects);
+        request.getRequestDispatcher("PracticeDetail.jsp").forward(request, response);
     }
 
     /**
@@ -99,31 +107,7 @@ public class ShowSliderController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        final int PAGE_SIZE = 3;
-        int page = 1;
-        String pageStr = request.getParameter("page");
-        if (pageStr != null) {
-            page = Integer.parseInt(pageStr);
-        }
-        int totalSearch = new SliderDAO().getTotalSlider();
-        int totalPage = totalSearch / PAGE_SIZE;
-        if (totalSearch % PAGE_SIZE != 0) {
-            totalPage += 1;
-        }
-
-        int sliderId = Integer.parseInt(request.getParameter("id"));
-        boolean status = new SliderDAO().getStatusBySliderId(sliderId);
-        new SliderDAO().updateSliderShow(sliderId);
-
-        List<Slider> listSliders = new SliderDAO().getAllSliders();
-        List<Slider> listSlidersByPagging = new SliderDAO().getListSlidersByPagging(page, PAGE_SIZE);
-
-        request.getSession().setAttribute("listSliders", listSliders);
-        request.getSession().setAttribute("listSlidersByPagging", listSlidersByPagging);
-        request.getSession().setAttribute("status", status);
-
-        response.sendRedirect("slider-list");
+        processRequest(request, response);
     }
 
     /**

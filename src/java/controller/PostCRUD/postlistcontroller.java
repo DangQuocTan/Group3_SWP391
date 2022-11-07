@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.BlogCRUD;
+package controller.PostCRUD;
 
 import dao.BlogDAO;
 import dao.PostDAO;
@@ -22,8 +22,8 @@ import model.Post;
  *
  * @author ADMIN
  */
-@WebServlet(name = "PostDetailController", urlPatterns = {"/post-detail"})
-public class PostDetailController extends HttpServlet {
+@WebServlet(name = "postlistcontroller", urlPatterns = {"/post-list"})
+public class postlistcontroller extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,18 +37,51 @@ public class PostDetailController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet PostDetailController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet PostDetailController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        final int PAGE_SIZE = 3;
+        int page = 1;
+        String pageStr = request.getParameter("page");
+        if (pageStr != null) {
+            page = Integer.parseInt(pageStr);
         }
+        int totalSearch = 0;
+        int totalPage = 0;
+        String blogAction = request.getParameter("blogAction");
+        if (blogAction.equalsIgnoreCase("get")) {
+            totalSearch = new PostDAO().getTotalPost();
+            totalPage = totalSearch / PAGE_SIZE;
+            if (totalSearch % PAGE_SIZE != 0) {
+                totalPage += 1;
+            }
+            List<Post> listPosts = new PostDAO().getPostsAndPagging(page, PAGE_SIZE);
+            List<Blog> listBlogs = new BlogDAO().getListBlogs();
+            Post lastPost = new PostDAO().getLastPost();
+
+            request.setAttribute("lastPost", lastPost);
+            request.setAttribute("listPosts", listPosts);
+            request.setAttribute("listBlogs", listBlogs);
+            request.setAttribute("pagination_url", "post-list?&blogAction=get&");
+        } else if (blogAction.equalsIgnoreCase("post")) {
+            int blogId = Integer.parseInt(request.getParameter("blogId"));
+            totalSearch = new PostDAO().getTotalPostByBlogId(blogId);
+            totalPage = totalSearch / PAGE_SIZE;
+            if (totalSearch % PAGE_SIZE != 0) {
+                totalPage += 1;
+            }
+            List<Post> listPosts = new PostDAO().getPostsByBlogIdAndPagging(blogId, page, PAGE_SIZE);
+            List<Blog> listBlogs = new BlogDAO().getListBlogs();
+            Post lastPost = new PostDAO().getLastPost();
+
+            request.setAttribute("blogId", blogId);
+            request.setAttribute("lastPost", lastPost);
+            request.setAttribute("listPosts", listPosts);
+            request.setAttribute("listBlogs", listBlogs);
+            request.setAttribute("pagination_url", "post-list?&blogAction=post&blogId=" + blogId + "&");
+        }
+
+        request.setAttribute("page", page);
+        request.setAttribute("totalPage", totalPage);
+
+        request.getRequestDispatcher("BlogList.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -63,15 +96,8 @@ public class PostDetailController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        int postId = Integer.parseInt(request.getParameter("postId"));
-        Post post = new PostDAO().getPostById(postId);
-        List<Blog> listBlogs = new BlogDAO().getListBlogs();
-        
-        request.setAttribute("post", post);
-        request.setAttribute("listBlogs", listBlogs);
-        
-        request.getRequestDispatcher("PostDetail.jsp").forward(request, response);
+        processRequest(request, response);
+
     }
 
     /**

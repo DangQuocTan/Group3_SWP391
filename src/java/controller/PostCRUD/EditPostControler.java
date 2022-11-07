@@ -3,25 +3,24 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.SliderCRUD;
+package controller.PostCRUD;
 
-import dao.SliderDAO;
+import dao.PostDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import model.Slider;
+import model.Post;
 
 /**
  *
  * @author ADMIN
  */
-@WebServlet(name = "ShowSliderController", urlPatterns = {"/show-slider"})
-public class ShowSliderController extends HttpServlet {
+@WebServlet(name = "EditPostControler", urlPatterns = {"/edit-post"})
+public class EditPostControler extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,10 +39,10 @@ public class ShowSliderController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ShowSliderController</title>");
+            out.println("<title>Servlet EditPostControler</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ShowSliderController  at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet EditPostControler at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -62,30 +61,12 @@ public class ShowSliderController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        final int PAGE_SIZE = 3;
-        int page = 1;
-        String pageStr = request.getParameter("page");
-        if (pageStr != null) {
-            page = Integer.parseInt(pageStr);
-        }
-        int totalSearch = new SliderDAO().getTotalSlider();
-        int totalPage = totalSearch / PAGE_SIZE;
-        if (totalSearch % PAGE_SIZE != 0) {
-            totalPage += 1;
-        }
+        int postId = Integer.parseInt(request.getParameter("postId"));
+        Post post = new PostDAO().getPostById(postId);
+        
+        request.setAttribute("post", post);
 
-        int sliderId = Integer.parseInt(request.getParameter("id"));
-        boolean status = new SliderDAO().getStatusBySliderId(sliderId);
-        new SliderDAO().updateSliderShow(sliderId);
-
-        List<Slider> listSliders = new SliderDAO().getAllSliders();
-        List<Slider> listSlidersByPagging = new SliderDAO().getListSlidersByPagging(page, PAGE_SIZE);
-
-        request.getSession().setAttribute("listSliders", listSliders);
-        request.getSession().setAttribute("listSlidersByPagging", listSlidersByPagging);
-        request.getSession().setAttribute("status", status);
-
-        response.sendRedirect("slider-list");
+        request.getRequestDispatcher("EditPost.jsp").forward(request, response);
     }
 
     /**
@@ -100,30 +81,20 @@ public class ShowSliderController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        final int PAGE_SIZE = 3;
-        int page = 1;
-        String pageStr = request.getParameter("page");
-        if (pageStr != null) {
-            page = Integer.parseInt(pageStr);
-        }
-        int totalSearch = new SliderDAO().getTotalSlider();
-        int totalPage = totalSearch / PAGE_SIZE;
-        if (totalSearch % PAGE_SIZE != 0) {
-            totalPage += 1;
-        }
+        int postId = Integer.parseInt(request.getParameter("postId"));
+        String title = request.getParameter("title");
+        boolean status = Boolean.parseBoolean(request.getParameter("status"));
+        String thumbnail = request.getParameter("image");
+        String briefInfor = request.getParameter("briefInfor");
+        String content = request.getParameter("description");
+        
+        new PostDAO().updatePost(postId, title, status, thumbnail, briefInfor, content);
+        Post post = new PostDAO().getPostById(postId);
+        
+        request.setAttribute("post", post);
 
-        int sliderId = Integer.parseInt(request.getParameter("id"));
-        boolean status = new SliderDAO().getStatusBySliderId(sliderId);
-        new SliderDAO().updateSliderShow(sliderId);
-
-        List<Slider> listSliders = new SliderDAO().getAllSliders();
-        List<Slider> listSlidersByPagging = new SliderDAO().getListSlidersByPagging(page, PAGE_SIZE);
-
-        request.getSession().setAttribute("listSliders", listSliders);
-        request.getSession().setAttribute("listSlidersByPagging", listSlidersByPagging);
-        request.getSession().setAttribute("status", status);
-
-        response.sendRedirect("slider-list");
+        request.getRequestDispatcher("EditPost.jsp").forward(request, response);
+        
     }
 
     /**

@@ -3,24 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.BlogCRUD;
+package controller.PostCRUD;
 
+import dao.BlogDAO;
 import dao.PostDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Blog;
 import model.Post;
 
 /**
  *
  * @author ADMIN
  */
-@WebServlet(name = "EditPostControler", urlPatterns = {"/edit-post"})
-public class EditPostControler extends HttpServlet {
+@WebServlet(name = "PostDetailController", urlPatterns = {"/post-detail"})
+public class PostDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -39,10 +42,10 @@ public class EditPostControler extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditPostControler</title>");            
+            out.println("<title>Servlet PostDetailController</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditPostControler at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet PostDetailController at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -63,10 +66,12 @@ public class EditPostControler extends HttpServlet {
 //        processRequest(request, response);
         int postId = Integer.parseInt(request.getParameter("postId"));
         Post post = new PostDAO().getPostById(postId);
+        List<Blog> listBlogs = new BlogDAO().getListBlogs();
         
         request.setAttribute("post", post);
-
-        request.getRequestDispatcher("EditPost.jsp").forward(request, response);
+        request.setAttribute("listBlogs", listBlogs);
+        
+        request.getRequestDispatcher("PostDetail.jsp").forward(request, response);
     }
 
     /**
@@ -80,21 +85,7 @@ public class EditPostControler extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        int postId = Integer.parseInt(request.getParameter("postId"));
-        String title = request.getParameter("title");
-        boolean status = Boolean.parseBoolean(request.getParameter("status"));
-        String thumbnail = request.getParameter("image");
-        String briefInfor = request.getParameter("briefInfor");
-        String content = request.getParameter("description");
-        
-        new PostDAO().updatePost(postId, title, status, thumbnail, briefInfor, content);
-        Post post = new PostDAO().getPostById(postId);
-        
-        request.setAttribute("post", post);
-
-        request.getRequestDispatcher("EditPost.jsp").forward(request, response);
-        
+        processRequest(request, response);
     }
 
     /**
